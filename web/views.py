@@ -86,3 +86,12 @@ def get_some(request, number):
     return HttpResponse('-', content_type="text/plain", charset="utf-8")
 
 
+# low task 6
+def limit_letters(request):
+    limit = int(request.GET.get('limit'))
+    offset = int(request.GET.get('offset'))
+    all_keys = ''.join(alphabet.keys())
+    if limit > len(all_keys) or offset > len(all_keys):
+        return HttpResponse('-', content_type="text/plain", charset="utf-8")
+    range_letters = all_keys[offset:limit + offset].lower()
+    return HttpResponse(f"{''.join(range_letters)}", content_type="text/plain", charset="utf-8")
