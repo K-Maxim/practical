@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task for backend</title>
+</head>
+<body>
+<h1>Hello world!</h1>
+{% block content %}
+    {% for k, v in letters.items %}
+        <p>{{ k }} {{ v }}</p>
+    {% endfor %}
+{% endblock %}
+</body>
+</html>
