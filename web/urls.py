@@ -14,4 +14,5 @@ urlpatterns = [
     path('letters/page/<int:page>/', views.page_letters),
     path('search/', views.search),
     path('get/', views.get_len),
+    path('sortletters/', views.sort_letters),
     ]

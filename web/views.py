@@ -136,3 +136,32 @@ def get_len(request):
     if len(some_values) == 0:
         return HttpResponse(f"Error 404", content_type="text/plain", charset="utf-8")
     return HttpResponse(f"{', '.join(some_values)}", content_type="text/plain", charset="utf-8")
+
+
+# low task 10
+def sort_letters(request):
+    limit = request.GET.get('limit')
+    offset = request.GET.get('offset')
+    sort = request.GET.get('sort')
+    all_keys = ''.join(alphabet.keys())
+    if limit is None and offset is None and sort is None:
+        return HttpResponse(f"{''.join(all_keys).lower()}", content_type="text/plain", charset="utf-8")
+    if limit and offset:
+        range_letters = all_keys[int(offset):int(limit) + int(offset)].lower()
+        return HttpResponse(f"{range_letters}", content_type="text/plain", charset="utf-8")
+    if limit or sort:
+        if sort == 'desc':
+            range_letters = ''.join(reversed(all_keys))
+            return HttpResponse(f"{range_letters[:int(limit)].lower()}", content_type="text/plain", charset="utf-8")
+        range_letters = all_keys[:int(limit)].lower()
+        return HttpResponse(f"{range_letters}", content_type="text/plain", charset="utf-8")
+    if offset or sort:
+        range_letters = all_keys[int(offset) - 1:].lower()
+        if sort == 'desc':
+            return HttpResponse(f"{sorted(range_letters, reverse=True)}", content_type="text/plain", charset="utf-8")
+        return HttpResponse(f"{range_letters}", content_type="text/plain", charset="utf-8")
+    else:
+        range_letters = all_keys[int(offset): int(offset) + int(limit)].lower()
+        if sort == 'desc':
+            return HttpResponse(f"{sorted(range_letters, reverse=True)}", content_type="text/plain", charset="utf-8")
+        return HttpResponse(f"{range_letters}", content_type="text/plain", charset="utf-8")
