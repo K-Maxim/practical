@@ -11,5 +11,6 @@ urlpatterns = [
     path('between/', views.between_letters),
     path('get-some/<int:number>/', views.get_some),
     path('letters/', views.limit_letters),
-    path('letters/page/<int:page>/', views.page_letters)
+    path('letters/page/<int:page>/', views.page_letters),
+    path('search/', views.search),
     ]

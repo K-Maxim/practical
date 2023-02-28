@@ -112,4 +112,15 @@ def page_letters(request, page):
     return HttpResponse(f"{range_letters.lower()}", content_type="text/plain", charset="utf-8")
 
 
+# low task 8
+def search(request):
+    s = request.GET.get('s')
+    all_values = alphabet.values()
+    some_values = []
+    for values in all_values:
+        if s in values.lower():
+            some_values.append(values)
+    if len(some_values) == 0:
+        return HttpResponse(f"Error 404", content_type="text/plain", charset="utf-8")
+    return HttpResponse(f"{', '.join(some_values)}", content_type="text/plain", charset="utf-8")
 
