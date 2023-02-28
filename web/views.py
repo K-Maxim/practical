@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse
+from django.core.paginator import Paginator, EmptyPage
 
 # Create your views here.
 
@@ -95,3 +96,20 @@ def limit_letters(request):
         return HttpResponse('-', content_type="text/plain", charset="utf-8")
     range_letters = all_keys[offset:limit + offset].lower()
     return HttpResponse(f"{''.join(range_letters)}", content_type="text/plain", charset="utf-8")
+
+
+# low task 7
+def page_letters(request, page):
+    all_keys = ''.join(alphabet.keys())
+    paginator = Paginator(all_keys, 5)
+    try:
+        letters = paginator.page(page)
+        range_letters = letters.object_list
+    except EmptyPage:
+        return HttpResponse(f"Error 404", content_type="text/plain", charset="utf-8")
+    if len(range_letters) < 5:
+        return HttpResponse(f"Error 404", content_type="text/plain", charset="utf-8")
+    return HttpResponse(f"{range_letters.lower()}", content_type="text/plain", charset="utf-8")
+
+
+

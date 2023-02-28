@@ -10,5 +10,6 @@ urlpatterns = [
     path('check/<letter>/<word>/', views.check_letter),
     path('between/', views.between_letters),
     path('get-some/<int:number>/', views.get_some),
-    path('letters/', views.limit_letters)
+    path('letters/', views.limit_letters),
+    path('letters/page/<int:page>/', views.page_letters)
     ]
