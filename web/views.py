@@ -124,3 +124,15 @@ def search(request):
         return HttpResponse(f"Error 404", content_type="text/plain", charset="utf-8")
     return HttpResponse(f"{', '.join(some_values)}", content_type="text/plain", charset="utf-8")
 
+
+# low task 9
+def get_len(request):
+    len_ = int(request.GET.get('len'))
+    all_values = alphabet.values()
+    some_values = []
+    for values in all_values:
+        if len_ == len(values):
+            some_values.append(values)
+    if len(some_values) == 0:
+        return HttpResponse(f"Error 404", content_type="text/plain", charset="utf-8")
+    return HttpResponse(f"{', '.join(some_values)}", content_type="text/plain", charset="utf-8")

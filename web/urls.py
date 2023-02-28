@@ -13,4 +13,5 @@ urlpatterns = [
     path('letters/', views.limit_letters),
     path('letters/page/<int:page>/', views.page_letters),
     path('search/', views.search),
+    path('get/', views.get_len),
     ]
